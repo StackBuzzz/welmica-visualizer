@@ -17,11 +17,18 @@
 .link {
   cursor: pointer;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  width: auto;
-  height: 100%;
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+
+  @include media('>=sm') {
+    width: 200px;
+  }
 }
 
 .menu {
