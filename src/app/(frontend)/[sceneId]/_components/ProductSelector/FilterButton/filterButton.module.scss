@@ -1,0 +1,114 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  animation-duration: 200ms;
+  animation-timing-function: ease-in-out;
+}
+
+.overlay[data-state='open'] {
+  animation-name: overlayFadeIn;
+}
+
+.overlay[data-state='closed'] {
+  animation-name: overlayFadeOut;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 12;
+  width: 100%;
+  max-width: min(90vw, 500px);
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--gray-1);
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.content[data-state='open'] {
+  animation-name: contentShow;
+}
+
+.content[data-state='closed'] {
+  animation-name: contentHide;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--gray-2) 0%, var(--gray-3) 100%);
+  border-bottom: 1px solid var(--gray-a4);
+}
+
+.filtersContainer {
+  max-height: 50vh;
+  padding-right: var(--space-3);
+}
+
+.activeFilter {
+  color: var(--accent-9);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-9);
+    border-radius: 50%;
+  }
+}
+
+.actionRow {
+  border-top: 1px solid var(--gray-a4);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlayFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes contentHide {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -48%);
+  }
+}

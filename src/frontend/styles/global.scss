@@ -1,0 +1,43 @@
+@use './media.scss' as *;
+
+:root {
+  --top-nav-height: 65px;
+  --container-max-width: 1440px;
+  --company-logo-height: 55px;
+  --main-padding: 10px;
+
+  @include media('>=desktop') {
+    --top-nav-height: 75px;
+  }
+}
+
+.transition {
+  $animation: 200ms ease-in-out;
+  transition:
+    color $animation,
+    background-color $animation,
+    filter $animation;
+}
+
+.limit_width {
+  $vertical_spacing: clamp(35px, 5vw, 80px);
+
+  box-sizing: border-box;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--main-padding);
+  padding-right: var(--main-padding);
+
+  &.pt {
+    padding-top: $vertical_spacing;
+  }
+
+  &.pb {
+    padding-bottom: $vertical_spacing;
+  }
+
+  &.wide {
+    max-width: 100%;
+  }
+}

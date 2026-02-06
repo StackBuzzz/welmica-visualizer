@@ -1,0 +1,29 @@
+.shareButton {
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-8, #0070f3);
+    outline-offset: 2px;
+    border-radius: var(--radius-3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.icon {
+  border-radius: 4px;
+}

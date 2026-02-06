@@ -1,0 +1,117 @@
+@use '@/frontend/styles/media.scss' as *;
+
+$container_padding: min(3vw, 25px);
+$viewport_height_fallback: calc(100svh - var(--top-nav-height));
+$viewport_height: calc(100dvh - var(--top-nav-height));
+
+.main {
+  --card-background: var(--color-panel-solid);
+  --card-border-color: var(--gray-2);
+  --card-border-radius: 10px;
+  --card-padding: 12px 5vw;
+  --card-shadow: var(--shadow-3);
+
+  // background-color: var(--sage-3);
+  height: $viewport_height_fallback;
+  height: $viewport_height;
+  $background: var(--gray-3);
+  $gap: 20px;
+  $size: 1px;
+  $color: var(--gray-9);
+  background:
+    linear-gradient(90deg, $background calc($gap - $size), transparent 1%)
+      center / $gap $gap,
+    linear-gradient($background calc($gap - $size), transparent 1%) center /
+      $gap $gap,
+    $color;
+
+  @include media('>=desktop') {
+    --card-padding: 16px;
+  }
+}
+
+.panelGroup {
+  box-sizing: border-box;
+  align-items: stretch;
+
+  @include media('<desktop') {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  @include media('>=desktop') {
+    padding-top: var(--main-padding);
+    padding-bottom: var(--main-padding);
+    gap: var(--main-padding);
+    flex-direction: row-reverse !important;
+  }
+}
+
+.productSelectorPanel {
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  @include media('>=desktop') {
+    $width: 350px !important;
+    width: $width;
+    max-width: $width;
+    min-width: $width;
+    flex-basis: unset !important;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
+
+.separator {
+  padding: 10px;
+  background-color: var(--card-background);
+  box-shadow: var(--shadow-4);
+
+  @include media('>=desktop') {
+    display: none;
+  }
+}
+
+.separatorHandle {
+  background-color: var(--gray-9);
+  max-width: 120px;
+  height: 5px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+// .previewCard {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: var(--card-background);
+
+//   .header {
+//     padding: var(--card-padding);
+//     box-shadow: var(--shadow-2);
+//     z-index: 1;
+//     flex-shrink: 0;
+//     flex-grow: 0;
+//   }
+
+//   @include media('>=desktop') {
+//     box-shadow: var(--card-shadow);
+//     border: 1px solid var(--card-border-color);
+//     border-radius: var(--card-border-radius);
+//   }
+// }
+
+// .playground {
+//   $background: var(--sand-2);
+//   $gap: 20px;
+//   $size: 1px;
+//   $color: var(--gray-9);
+
+//   flex-grow: 1;
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   background:
+//     linear-gradient(90deg, $background calc($gap - $size), transparent 1%)
+//       center / $gap $gap,
+//     linear-gradient($background calc($gap - $size), transparent 1%) center /
+//       $gap $gap,
+//     $color;
+// }

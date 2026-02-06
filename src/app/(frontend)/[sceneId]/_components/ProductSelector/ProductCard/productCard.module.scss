@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 8px;
+  transition-property: border-color, background-color, color;
+  padding: 2px;
+
+  &.selected {
+    outline: 2px solid var(--accent-8);
+  }
+
+  &:hover:not(&.selected) {
+    background-color: var(--gray-2);
+  }
+}
+
+.image {
+  border-radius: inherit;
+  aspect-ratio: 1;
+  width: 90px;
+  object-fit: cover;
+
+  &.gridView {
+    width: 100%;
+  }
+}

@@ -1,0 +1,48 @@
+@use '@/frontend/styles/media.scss' as *;
+
+.container {
+  --card-padding: 12px 5vw;
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--card-background);
+  height: 100%;
+
+  @include media('>=desktop') {
+    --card-padding: 12px;
+
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border-color);
+  }
+}
+
+.stickyHeader {
+  position: sticky;
+  top: 0;
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-2);
+  background-color: var(--card-background);
+  z-index: 1;
+}
+
+.listContainer {
+  width: 100%;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.grid {
+  box-sizing: border-box;
+  padding: var(--card-padding);
+  grid-template-columns: repeat(auto-fit, minmax(min(325px, 100%), 1fr));
+  width: 100%;
+
+  &.compact {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}

@@ -1,0 +1,64 @@
+@use '@/frontend/styles/media' as *;
+
+.header {
+  box-sizing: border-box;
+  padding: 10px 0px;
+  height: var(--top-nav-height);
+  background-color: var(--color-panel-solid);
+  z-index: 10;
+  border-bottom: 1px solid var(--gray-6);
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.link {
+  cursor: pointer;
+  height: 100%;
+}
+
+.logo {
+  width: auto;
+  height: 100%;
+}
+
+.menu {
+  z-index: 11;
+}
+
+.menuItem {
+  cursor: pointer;
+  font-size: var(--font-size-2);
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  @include media('>=sm') {
+    font-size: var(--font-size-3);
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+}
+
+.hideInMobile {
+  display: none !important;
+
+  @include media('>=sm') {
+    display: inline-flex !important;
+  }
+}
+
+.hideInDesktop {
+  display: flex !important;
+
+  @include media('>=sm') {
+    display: none !important;
+  }
+}
+
+.contactButton {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

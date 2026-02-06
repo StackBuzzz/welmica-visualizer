@@ -1,0 +1,17 @@
+.radix-themes {
+  /* cursor  */
+  --cursor-button: pointer;
+  --cursor-link: pointer;
+  --cursor-slider-thumb: grab;
+  --cursor-slider-thumb-active: grabbing;
+
+  /* typography */
+  --default-font-family: var(--default-font); /* for regular texts */
+  --heading-font-family: var(--default-font); /* for heading */
+
+  --default-font-weight: 400;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+}

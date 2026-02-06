@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.vscode
+src/app/(payload)
+migrations
+.husky
+public
+package-lock.json
+package.json
+.cache
+tsconfig.tsbuildinfo
+tsconfig.json

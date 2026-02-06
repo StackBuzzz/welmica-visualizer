@@ -1,0 +1,188 @@
+// Sizing and Layout
+$cube-size: clamp(64px, 15vw, 96px);
+$half-size: calc($cube-size / 2);
+
+// Core energy source (Inner light)
+$core-bg: #ffffff;
+$core-glow: rgba(99, 102, 241, 0.8);
+
+// Semantic Glow effects for faces - Tech Blue/Indigo glows
+$primary-glow: rgba(59, 130, 246, 0.4);
+$secondary-glow: rgba(129, 140, 248, 0.35);
+$tertiary-glow: rgba(148, 163, 184, 0.25);
+
+// Primary Face colors (Front/Back) - Tech Slate with Electric Cyan highlights
+$face-primary-bg: rgba(6, 182, 212, 0.1);
+$face-primary-border: #22d3ee;
+
+// Secondary Face colors (Right/Left) - Modern Purple
+$face-secondary-bg: rgba(168, 85, 247, 0.1);
+$face-secondary-border: #a855f7;
+
+// Tertiary Face colors (Top/Bottom) - Sophisticated Indigo
+$face-tertiary-bg: rgba(99, 102, 241, 0.1);
+$face-tertiary-border: #6366f1;
+
+// Floor shadow
+$shadow-bg: rgba(0, 0, 0, 0.4);
+
+// Text colors - High-end Navy and Slate
+$title-color: #1e1b4b;
+$subtitle-color: #64748b;
+
+// Animation highlights
+$breathe-glow: rgba(255, 255, 255, 0.8);
+
+.container {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  width: $cube-size;
+  height: $cube-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: cubeSpin 8s linear infinite;
+}
+
+.core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: calc($cube-size / 3);
+  height: calc($cube-size / 3);
+  background-color: $core-bg;
+  border-radius: 50%;
+  filter: blur(8px);
+  box-shadow: 0 0 40px $core-glow;
+  animation: pulse-fast 2s ease-in-out infinite;
+  z-index: 10;
+}
+
+.sideWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+
+  &.front {
+    transform: rotateY(0deg);
+  }
+  &.back {
+    transform: rotateY(180deg);
+  }
+  &.right {
+    transform: rotateY(90deg);
+  }
+  &.left {
+    transform: rotateY(-90deg);
+  }
+  &.top {
+    transform: rotateX(90deg);
+  }
+  &.bottom {
+    transform: rotateX(-90deg);
+  }
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  animation: breathe 3s ease-in-out infinite;
+  backdrop-filter: blur(2px);
+  border: 2px solid;
+
+  .front &,
+  .back & {
+    background-color: $face-primary-bg;
+    border-color: $face-primary-border;
+    box-shadow: 0 0 15px $primary-glow;
+  }
+
+  .right &,
+  .left & {
+    background-color: $face-secondary-bg;
+    border-color: $face-secondary-border;
+    box-shadow: 0 0 15px $secondary-glow;
+  }
+
+  .top &,
+  .bottom & {
+    background-color: $face-tertiary-bg;
+    border-color: $face-tertiary-border;
+    box-shadow: 0 0 15px $tertiary-glow;
+  }
+}
+
+.shadow {
+  position: absolute;
+  bottom: -5rem;
+  width: $cube-size;
+  height: calc($cube-size / 3);
+  background-color: $shadow-bg;
+  filter: blur(24px);
+  border-radius: 100%;
+  animation: shadow-breathe 3s ease-in-out infinite;
+}
+
+@keyframes cubeSpin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateZ($half-size);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateZ(calc($half-size * 1.66));
+    opacity: 0.4;
+    border-color: $breathe-glow;
+  }
+}
+
+@keyframes pulse-fast {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes shadow-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.2;
+  }
+}

@@ -1,0 +1,8 @@
+@use '@/frontend/styles/media.scss' as *;
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

@@ -1,0 +1,43 @@
+$height: 350px;
+
+.slider {
+  width: 100%;
+  height: $height;
+  margin: 0 auto;
+  position: relative;
+  background: linear-gradient(180deg, var(--gray-2) 0%, var(--gray-3) 100%);
+  border-radius: 12px;
+  border: 1px solid var(--gray-a4);
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.prevButton {
+  left: 16px;
+}
+
+.nextButton {
+  right: 16px;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+}
