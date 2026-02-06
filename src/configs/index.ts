@@ -13,7 +13,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const isR2EndpointDefined = typeof process.env.R2_ENDPOINT === 'string';
 
 export const globalConfigs: Configs = {
-  SITE_NAME: 'Website',
+  SITE_NAME: 'Welmica',
   LOGO_URL: '/media/logo-white.png',
   ADMIN_URL: '/admin', // MUST MATCH WITH next-sitemap.config.cjs
   API_URL: '/api',

@@ -24,8 +24,8 @@ import '@/frontend/styles/global.scss';
 
 export const metadata: Metadata = {
   // TODO: set appropriate metadata
-  title: 'Visualizer Title',
-  description: 'Visualizer description'
+  title: 'Welmica Visualizer',
+  description: ''
 };
 
 const Layout: FunctionComponent<LayoutProps<'/'>> = ({ children }) => {
