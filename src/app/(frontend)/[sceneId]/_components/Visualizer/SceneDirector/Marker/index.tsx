@@ -61,7 +61,7 @@ const Marker: FunctionComponent<MarkerProps> = ({
         draw={(g) => {
           g.clear();
           if (isActive) {
-            // Active: solid blue with subtle inner glow
+            // Active: solid accent with subtle inner glow
             g.roundRect(
               -pillWidth / 2,
               -PILL_HEIGHT / 2,
@@ -69,7 +69,7 @@ const Marker: FunctionComponent<MarkerProps> = ({
               PILL_HEIGHT,
               PILL_RADIUS
             );
-            g.fill({ color: 0x2563eb });
+            g.fill({ color: 0xbb7558 });
           } else {
             // Inactive: clean white pill
             g.roundRect(
