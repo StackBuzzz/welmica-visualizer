@@ -18,6 +18,7 @@ export const ResponsiveMedia: CollectionConfig = {
     focalX: true,
     focalY: true,
     url: true,
+    prefix: true,
     updatedAt: true,
     sizes: Object.fromEntries(
       RESPONSIVE_IMAGE_SIZES.map((size) => [
