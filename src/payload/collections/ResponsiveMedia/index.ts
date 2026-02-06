@@ -51,7 +51,10 @@ export const ResponsiveMedia: CollectionConfig = {
     staticDir: staticDir.responsive,
     mimeTypes: ['image/*'],
     adminThumbnail: String(RESPONSIVE_IMAGE_SIZES[0]),
-    imageSizes: RESPONSIVE_IMAGE_SIZES.map((width) => ({
+    imageSizes: RESPONSIVE_IMAGE_SIZES.slice(
+      0,
+      RESPONSIVE_IMAGE_SIZES.length - 1
+    ).map((width) => ({
       width,
       name: String(width),
       formatOptions: {
@@ -59,6 +62,11 @@ export const ResponsiveMedia: CollectionConfig = {
         options: { quality: 80, effort: 6 }
       }
     })),
+    resizeOptions: {
+      width: RESPONSIVE_IMAGE_SIZES[RESPONSIVE_IMAGE_SIZES.length - 1],
+      withoutEnlargement: true,
+      withoutReduction: false
+    },
     formatOptions: {
       format: 'webp',
       options: { quality: 80, effort: 6 }

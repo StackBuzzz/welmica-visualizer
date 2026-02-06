@@ -295,14 +295,6 @@ export interface ResponsiveMedia {
       filesize?: number | null;
       filename?: string | null;
     };
-    '4096'?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
   };
 }
 /**
@@ -739,16 +731,6 @@ export interface ResponsiveMediaSelect<T extends boolean = true> {
               filename?: T;
             };
         '3072'?:
-          | T
-          | {
-              url?: T;
-              width?: T;
-              height?: T;
-              mimeType?: T;
-              filesize?: T;
-              filename?: T;
-            };
-        '4096'?:
           | T
           | {
               url?: T;
