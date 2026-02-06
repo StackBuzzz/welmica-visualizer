@@ -18,6 +18,11 @@ export const r2Storage: Plugin = payloadS3Storage({
       prefix: staticDir.responsive,
       generateFileURL: ({ filename, prefix }) =>
         `${baseUrl}/${prefix}/${encodeURIComponent(filename)}`
+    },
+    passes: {
+      prefix: staticDir.renderPasses,
+      generateFileURL: ({ filename, prefix }) =>
+        `${baseUrl}/${prefix}/${encodeURIComponent(filename)}`
     }
   },
   bucket,
