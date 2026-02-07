@@ -1,4 +1,6 @@
 import { Button, Flex, Text } from '@radix-ui/themes';
+import classNames from 'classnames';
+import styles from './checkboxCardGroup.module.scss';
 import type { FunctionComponent } from 'react';
 
 export type CheckboxCardOption = {
@@ -21,13 +23,13 @@ const CheckboxCardGroup: FunctionComponent<CheckboxCardGroupProps> = ({
 }) => {
   return (
     <Flex direction='column' gap='1' align='start'>
-      <Text size='4' weight='light'>
+      <Text size='3' weight='regular'>
         {label}
       </Text>
       <Flex direction='row' wrap='wrap' justify='start' align='center' gap='2'>
         {options.map((option) => (
           <Button
-            className='transition'
+            className={classNames('transition', styles.button)}
             size='3'
             onClick={() => onChange(option.id)}
             variant='surface'

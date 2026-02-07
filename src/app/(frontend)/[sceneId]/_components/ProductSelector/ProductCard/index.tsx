@@ -70,16 +70,28 @@ const ProductCard: FunctionComponent<ProductCardProps> = ({
           }
         }}
       >
-        <MotionImage
+        <div
           className={classNames(
-            styles.image,
+            styles.imageWrapper,
             view === 'grid' && styles.gridView
           )}
-          sizes='200px'
-          data={thumb}
-          alt={`${label} product image`}
-          layout
-        />
+        >
+          <MotionImage
+            className={styles.image}
+            sizes='200px'
+            data={thumb}
+            alt={`${label} product image`}
+            layout
+          />
+          {view === 'grid' && (
+            <div
+              className={styles.infoButton}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SpecificationModal product={product} size='1' radius='large' />
+            </div>
+          )}
+        </div>
         {view === 'list' && (
           <Flex direction='column' flexGrow='1' gap='1' flexShrink='1' p='2'>
             <Flex direction='row' align='center' justify='between' gap='3'>

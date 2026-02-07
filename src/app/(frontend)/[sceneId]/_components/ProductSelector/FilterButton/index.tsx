@@ -100,7 +100,7 @@ const FilterButton: FunctionComponent<FilterButtonProps> = ({
             px='4'
             className={styles.header}
           >
-            <Text size='4' as='div' weight='bold'>
+            <Text size='5' as='div' weight='bold'>
               Filter Products
             </Text>
             <Dialog.Close asChild>

@@ -11,18 +11,23 @@ import ImageSlider from './ImageSlider';
 import styles from './specificationModal.module.scss';
 import type { ProductDoc } from '../../types';
 import type { Collection, Series } from '@/payload-types';
+import type { IconButtonProps } from '@radix-ui/themes';
 import type { FunctionComponent } from 'react';
 
 interface SpecificationModalProps {
   product: ProductDoc;
+  size?: IconButtonProps['size'];
+  radius?: IconButtonProps['radius'];
 }
 
 const SpecificationModal: FunctionComponent<SpecificationModalProps> = ({
-  product
+  product,
+  size,
+  radius
 }) => {
   const { label, details } = product;
-  const [open, setOpen] = useState(false);
-  const [isFancyboxOpen, setIsFancyboxOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [isFancyboxOpen, setIsFancyboxOpen] = useState<boolean>(false);
 
   const handleFancyboxStateChange = useCallback((isOpen: boolean) => {
     setIsFancyboxOpen(isOpen);
@@ -43,22 +48,15 @@ const SpecificationModal: FunctionComponent<SpecificationModalProps> = ({
           tooltip='More Details'
           color='gray'
           variant='surface'
-          size='2'
+          size={size || '2'}
+          radius={radius || 'medium'}
         >
           <TiInfoLarge />
         </TooltipIconButton>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
-        <Dialog.Content
-          className={styles.content}
-          onInteractOutside={(e) => {
-            if (isFancyboxOpen) e.preventDefault();
-          }}
-          onEscapeKeyDown={(e) => {
-            if (isFancyboxOpen) e.preventDefault();
-          }}
-        >
+        <Dialog.Content className={styles.content}>
           <Dialog.Title hidden>Product Details</Dialog.Title>
           <Dialog.Description hidden />
           <Flex
@@ -68,7 +66,7 @@ const SpecificationModal: FunctionComponent<SpecificationModalProps> = ({
             px='4'
             className={styles.header}
           >
-            <Text size='4' as='div' weight='bold'>
+            <Text size='5' as='div' weight='bold'>
               Product Details
             </Text>
             <Dialog.Close asChild>

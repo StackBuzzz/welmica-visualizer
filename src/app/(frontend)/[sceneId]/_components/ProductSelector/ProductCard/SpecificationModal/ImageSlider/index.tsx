@@ -57,9 +57,16 @@ const ImageSlider: FunctionComponent<ImageSliderProps> = ({
 
     Fancybox.show(galleryItems, {
       startIndex: currentIndex,
+      Carousel: {
+        Fullscreen: { autoStart: true }
+      },
       on: {
         init: () => {
           onFancyboxStateChange?.(true);
+        },
+        ready: (fancybox) => {
+          const container = fancybox.getContainer();
+          container.style.pointerEvents = 'auto';
         },
         destroy: () => {
           onFancyboxStateChange?.(false);
@@ -97,18 +104,18 @@ const ImageSlider: FunctionComponent<ImageSliderProps> = ({
 
       <Flex justify='end' gap='2' m='4' className={styles.buttons}>
         <TooltipIconButton
+          tooltip={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
           size='2'
           radius='large'
-          tooltip='Favorite'
           variant='outline'
           onClick={toggleFavorite}
         >
           {isFavorite ? <BiSolidHeart color='var(--red-9)' /> : <BiHeart />}
         </TooltipIconButton>
         <TooltipIconButton
+          tooltip='View in full screen'
           size='2'
           radius='large'
-          tooltip='Fullscreen'
           variant='outline'
           onClick={handleFullscreen}
         >

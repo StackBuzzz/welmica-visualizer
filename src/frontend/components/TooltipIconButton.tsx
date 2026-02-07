@@ -15,7 +15,7 @@ function TooltipIconButton({
   ...props
 }: TooltipIconButtonProps) {
   return (
-    <Tooltip sideOffset={10} content={tooltip} style={{ zIndex: 11 }}>
+    <Tooltip sideOffset={10} content={tooltip} style={{ zIndex: 12 }}>
       <IconButton
         className={classNames('transition', className)}
         variant='ghost'

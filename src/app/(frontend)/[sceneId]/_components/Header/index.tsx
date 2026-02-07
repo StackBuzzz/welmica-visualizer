@@ -87,7 +87,7 @@ const Header: FunctionComponent = () => {
                 </Link>
               </Button>
             )}
-            <DropdownMenu.Root modal={false}>
+            <DropdownMenu.Root>
               <DropdownMenu.Trigger>
                 <IconButton size='3' variant='outline' color='gray'>
                   <BsThreeDotsVertical size='16px' />
