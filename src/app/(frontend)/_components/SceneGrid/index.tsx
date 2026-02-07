@@ -18,6 +18,7 @@ const SceneGrid: FunctionComponent<SceneGridProps> = ({ sceneList }) => {
             className={styles.image}
             data={scene.general.thumbnail}
             alt='scene thumbnail'
+            sizes='(max-width: 1024px) 100vw, 768px'
           />
         </Link>
       ))}
