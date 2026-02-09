@@ -3,7 +3,7 @@
 import classNames from 'classnames';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { stringify } from 'qs-esm';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useMedia } from 'react-use';
 import ProductSelector from '../ProductSelector';
@@ -64,11 +64,16 @@ const Main: FunctionComponent<MainProps> = ({ scene, productFilterData }) => {
     router.replace(pathname + newSearchParams, { scroll: false });
   };
 
+  const handleLayout = useCallback(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, []);
+
   return (
     <main className={styles.main}>
       <PanelGroup
         direction={isDesktop ? 'horizontal' : 'vertical'}
         className={classNames('limit_width wide', styles.panelGroup)}
+        onLayout={handleLayout}
       >
         <Panel defaultSize={55} tagName='section' id='scene-panel'>
           <Scene

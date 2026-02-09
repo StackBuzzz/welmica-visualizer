@@ -48,9 +48,9 @@ $viewport_height: calc(100dvh - var(--top-nav-height));
 }
 
 .productSelectorPanel {
-  border-radius: var(--card-border-radius);
   box-shadow: var(--card-shadow);
   @include media('>=desktop') {
+    border-radius: var(--card-border-radius);
     $width: 350px !important;
     width: $width;
     max-width: $width;
@@ -62,6 +62,8 @@ $viewport_height: calc(100dvh - var(--top-nav-height));
 }
 
 .separator {
+  border-top-left-radius: var(--card-border-radius);
+  border-top-right-radius: var(--card-border-radius);
   padding: 10px;
   background-color: var(--card-background);
   box-shadow: var(--shadow-4);
