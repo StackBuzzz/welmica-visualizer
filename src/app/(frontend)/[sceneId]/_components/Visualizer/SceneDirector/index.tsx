@@ -1,5 +1,6 @@
 import { useApplication } from '@pixi/react';
 import { Assets } from 'pixi.js';
+import { useCallback, useState } from 'react';
 import { useDeepCompareEffect } from 'react-use';
 import { PASS_TEXTURE_NAMES } from '../constants';
 import useSceneTransform from '../useScreenSize';
@@ -7,8 +8,10 @@ import Marker from './Marker';
 import SceneToolbar from './SceneToolbar';
 import SegmentDirector from './SegmentDirector';
 import type { SceneSegments } from '@/payload-types';
-import type { Texture } from 'pixi.js';
+import type { Texture, Graphics } from 'pixi.js';
 import type { FunctionComponent } from 'react';
+
+const SCENE_BORDER_RADIUS = 10;
 
 interface SceneDirectorProps {
   sceneScaleFactor: number;
@@ -41,6 +44,7 @@ const SceneDirector: FunctionComponent<SceneDirectorProps> = ({
     sceneWidthPx,
     sceneHeightPx
   );
+  const [radiusMask, setRadiusMask] = useState<Graphics | null>(null);
 
   useDeepCompareEffect(() => {
     const loadAssets = async () => {
@@ -66,6 +70,15 @@ const SceneDirector: FunctionComponent<SceneDirectorProps> = ({
     };
   }, [sceneAssets, setIsAssetsLoading]);
 
+  const drawRadiusMask = useCallback(
+    (g: Graphics) => {
+      g.clear();
+      g.roundRect(0, 0, sceneWidthPx, sceneHeightPx, SCENE_BORDER_RADIUS);
+      g.fill(0xffffff);
+    },
+    [sceneWidthPx, sceneHeightPx]
+  );
+
   if (!isInitialised || isAssetsLoading) return null;
 
   return (
@@ -75,25 +88,28 @@ const SceneDirector: FunctionComponent<SceneDirectorProps> = ({
       y={offsetY}
       visible={!isAssetsLoading}
     >
-      <pixiContainer scale={scale} label='scene'>
-        <pixiSprite
-          eventMode='none'
-          texture={Assets.get(PASS_TEXTURE_NAMES.static)}
-          label='base'
-        />
-        {segments.map((segment) => (
-          <SegmentDirector
-            key={`segment-${segment.id}`}
-            segment={segment}
-            sceneScaleFactor={sceneScaleFactor}
+      <pixiContainer scale={scale} label='scene-wrapper' mask={radiusMask}>
+        <pixiGraphics ref={setRadiusMask} draw={drawRadiusMask} />
+        <pixiContainer label='scene'>
+          <pixiSprite
+            eventMode='none'
+            texture={Assets.get(PASS_TEXTURE_NAMES.static)}
+            label='base'
           />
-        ))}
-        <pixiSprite
-          eventMode='none'
-          texture={Assets.get(PASS_TEXTURE_NAMES.shadow)}
-          blendMode='multiply'
-          label='shadow'
-        />
+          {segments.map((segment) => (
+            <SegmentDirector
+              key={`segment-${segment.id}`}
+              segment={segment}
+              sceneScaleFactor={sceneScaleFactor}
+            />
+          ))}
+          <pixiSprite
+            eventMode='none'
+            texture={Assets.get(PASS_TEXTURE_NAMES.shadow)}
+            blendMode='multiply'
+            label='shadow'
+          />
+        </pixiContainer>
       </pixiContainer>
       <pixiContainer label='interactions'>
         <SceneToolbar sceneWidth={sceneWidthPx} scale={scale} />

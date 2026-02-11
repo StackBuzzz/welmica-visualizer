@@ -3,15 +3,22 @@ import { getPayloadServerApi } from './getPayloadServerApi';
 export const getSceneConfigsById = async (sceneId: string) => {
   const payload = await getPayloadServerApi();
 
-  return payload.findByID({
+  const { docs } = await payload.find({
     collection: 'scenes',
-    id: sceneId,
+    where: {
+      id: { equals: sceneId },
+      _status: { equals: 'published' }
+    },
+    pagination: false,
     overrideAccess: true,
+    draft: false,
     disableErrors: true,
-    depth: 5,
+    depth: 2,
     select: {
       passes: true,
       segments: true
     }
   });
+
+  return docs[0];
 };
